@@ -320,43 +320,7 @@ class MainForm : Form
     //    RebuildToList();
     //}
 
-    // "Куда" — точки назначения, доступные из выбранного "Откуда" в текущей категории.
-    void RebuildToList()
-    {
-        cmbTo.Items.Clear();
-        string from = cmbFrom.SelectedItem?.ToString();
-        if (from != null)
-            foreach (var r in st.Routes.Where(r => r.Shunting == shuntMode && r.From == from))
-                cmbTo.Items.Add(r.To);
-        if (cmbTo.Items.Count > 0) cmbTo.SelectedIndex = 0;
-        RebuildRouteListBox();
-    }
-
-    // общий список "От → До" для текущей категории — можно установить/отменить двойным щелчком.
-    void RebuildRouteListBox()
-    {
-        lstRoutes.Items.Clear();
-        foreach (var r in st.Routes.Where(r => r.Shunting == shuntMode))
-            lstRoutes.Items.Add(r);   // ListBox показывает Route.ToString() == Name
-    }
-
-    void SetOrCancelFromCombo()
-    {
-        string from = cmbFrom.SelectedItem?.ToString();
-        string to = cmbTo.SelectedItem?.ToString();
-        if (from == null || to == null) return;
-        var route = st.Find(from, to, shuntMode);
-        if (route == null) { AddLog($"Маршрут {from} → {to} не найден"); return; }
-        if (st.Active.Contains(route)) st.Cancel(route);
-        else st.TrySetRoute(route);
-    }
-
-    void SetOrCancelFromList()
-    {
-        if (lstRoutes.SelectedItem is not Route route) return;
-        if (st.Active.Contains(route)) st.Cancel(route);
-        else st.TrySetRoute(route);
-    }
+  
 
     void RefreshUi()
     {

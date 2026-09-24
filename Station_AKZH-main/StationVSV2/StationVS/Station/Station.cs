@@ -162,12 +162,14 @@ class Station
         R(true, "Н1", "Ч1", "1a");
         R(true, "Н2", "Ч2", "2a");
         R(true, "Н3", "Ч3", "3a");
+        //R(false, "Ч5", "Н", "5b,d5,3b2,1c,m1", (17, false), (13, false));
+        R(false, "Ч5", "M1", "5b,d5,3b2,1c,m1", (17, false), (15, false));
 
 
 
         // ===== Маневровые =====
 
-    
+
         R(true, "Н4", "Ч4", "4a", (14, false));
 
         R(true, "Н1", "М8", "m8", (8, true));
